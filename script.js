@@ -1,22 +1,24 @@
-function functionAc() {
-  document.getElementById("display").value = "";
-}
+let input = document.getElementById('inputBox')
+let button = document.querySelectorAll('button')
 
-function myFunction(event) {
-  if (
-    event == "1" ||
-    event == "2" ||
-    event == "3" ||
-    event == "4" ||
-    event == "5" ||
-    event == "6" ||
-    event == "7" ||
-    event == "8" ||
-    event == "9" ||
-    event == "0" ||
-    event == "00"
-  ) {
-    // document.getElementById('display').value += en
-    console.log(event);
+let string = ""
+let array = Array.from(button)
+array.forEach(
+  button=>{
+    button.addEventListener('click', (e) =>{
+      if (e.target.innerHTML == '=') {
+        string = eval(string)
+        input.value = string
+      } else if (e.target.innerHTML == 'AC'){
+        string = ''
+        input.value = string;
+      } else if (e.target.innerHTML == 'DEL') {
+        string = string.substring(0, string.length-1)
+        input.value = string
+      } else {
+        string += e.target.innerHTML
+        input.value = string
+      }
+    })
   }
-}
+)
